@@ -8,6 +8,8 @@ class Task {
 }
 const App = {
     tasks: [], currentFilter: 'all', searchQuery: '',
+        document.querySelectorAll(".filter-btn").forEach(b=>{b.addEventListener("click",(e)=>{document.querySelectorAll(".filter-btn").forEach(x=>x.classList.remove("active"));e.target.classList.add("active");this.currentFilter=e.target.dataset.filter;this.render();});});
+        const si=document.getElementById("searchInput"); if(si){si.addEventListener("input",(e)=>{this.searchQuery=e.target.value.toLowerCase();this.render();});}
     init() { this.loadTasks(); this.bindEvents(); this.render(); },
     bindEvents() {
         document.getElementById('addTaskForm').addEventListener('submit', (e) => {
@@ -17,6 +19,8 @@ const App = {
             const p=document.getElementById('taskPriority').value;
             if(t){this.addTask(t,d,p);e.target.reset();}
         });
+        document.querySelectorAll(".filter-btn").forEach(b=>{b.addEventListener("click",(e)=>{document.querySelectorAll(".filter-btn").forEach(x=>x.classList.remove("active"));e.target.classList.add("active");this.currentFilter=e.target.dataset.filter;this.render();});});
+        const si=document.getElementById("searchInput"); if(si){si.addEventListener("input",(e)=>{this.searchQuery=e.target.value.toLowerCase();this.render();});}
     },
     loadTasks() { const s=localStorage.getItem('tasks'); if(s) this.tasks=JSON.parse(s); },
     saveTasks() { localStorage.setItem('tasks', JSON.stringify(this.tasks)); },
