@@ -15,7 +15,7 @@
         </header>
         <section class="task-form">
             <h2>Thêm Task Mới</h2>
-            <form id="addTaskForm">
+            <form id="addTaskForm" aria-label="Thêm task mới">
                 <div class="form-group">
                     <label for="taskTitle">Tiêu đề</label>
                     <input type="text" id="taskTitle" placeholder="Nhập tiêu đề task..." required>
@@ -48,7 +48,7 @@
             </div>
             <div class="task-stats" id="taskStats"></div>
         </section>
-        <section class="task-list" id="taskList"></section>
+        <section class="task-list" role="list" aria-label="Danh sách tasks" id="taskList"></section>
     </div>
     <script src="app.js"></script>
     <script src="drag.js"></script>
