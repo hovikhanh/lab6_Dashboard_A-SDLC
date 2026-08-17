@@ -46,3 +46,12 @@ h1{color:#64ffda;font-size:2.5rem;margin-bottom:8px}
 
 .task-card.dragging{opacity:0.4;border:2px dashed #64ffda}
 .task-card.drag-over{border-top:3px solid #64ffda}
+
+[data-theme="light"] body{background:#f5f7fa;color:#1a1a2e}
+[data-theme="light"] .task-form,[data-theme="light"] .task-card{background:#fff;border-color:rgba(0,0,0,0.1);box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+[data-theme="light"] h1{color:#00897b}
+[data-theme="light"] .form-group input,[data-theme="light"] .form-group textarea,[data-theme="light"] .form-group select{background:#f5f7fa;border-color:#ddd;color:#1a1a2e}
+[data-theme="light"] .task-card .task-title{color:#1a1a2e}
+[data-theme="light"] .filter-btn.active{background:rgba(0,137,123,0.1);border-color:#00897b;color:#00897b}
+.theme-toggle-btn{position:fixed;top:20px;right:20px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(100,255,218,0.3);background:rgba(255,255,255,0.05);font-size:1.2rem;cursor:pointer;transition:all 0.3s;z-index:100}
+.theme-toggle-btn:hover{transform:scale(1.1);border-color:#64ffda}
