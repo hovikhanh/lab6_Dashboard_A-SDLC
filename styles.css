@@ -57,3 +57,13 @@ h1{color:#64ffda;font-size:2.5rem;margin-bottom:8px}
 .theme-toggle-btn:hover{transform:scale(1.1);border-color:#64ffda}
 
 .category-badge{padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:500}
+
+.dialog-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;z-index:2000}
+.dialog-overlay.show{opacity:1}
+.dialog-box{background:#1a1a3e;border:1px solid rgba(100,255,218,0.2);border-radius:12px;padding:24px;min-width:320px;transform:scale(0.9);transition:transform 0.3s}
+.dialog-overlay.show .dialog-box{transform:scale(1)}
+.dialog-message{color:#ccd6f6;margin-bottom:20px}
+.dialog-actions{display:flex;gap:12px;justify-content:flex-end}
+.btn-cancel{background:transparent;border:1px solid #8892b0;color:#8892b0}
+.btn-danger{background:rgba(255,82,82,0.8);color:white}
+.btn-danger:hover{background:#ff5252}
