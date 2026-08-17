@@ -41,7 +41,7 @@ jobs:
       - name: Send to Google Sheets
         if: env.GOOGLE_SCRIPT_URL != ''
         env:
-          GOOGLE_SCRIPT_URL: ${{ secrets.GOOGLE_APPS_SCRIPT_URL }}
+          GOOGLE_SCRIPT_URL: ${{ secrets.GOOGLE_SCRIPT_WEBHOOK_URL }}
         run: |
           curl -s -L "$GOOGLE_SCRIPT_URL" \
             -H "Content-Type: application/json" \
