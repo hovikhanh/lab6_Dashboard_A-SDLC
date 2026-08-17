@@ -13,3 +13,17 @@ h1{color:#64ffda;font-size:2.5rem;margin-bottom:8px}
 .btn{padding:10px 24px;border:none;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:600;transition:all 0.3s}
 .btn-primary{background:linear-gradient(135deg,#64ffda,#48c9b0);color:#0f0f23}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(100,255,218,0.3)}
+
+.task-list{display:flex;flex-direction:column;gap:12px}
+.task-card{background:rgba(255,255,255,0.05);border:1px solid rgba(100,255,218,0.1);border-radius:10px;padding:16px 20px;display:flex;align-items:center;gap:16px;transition:all 0.3s}
+.task-card:hover{background:rgba(255,255,255,0.08);transform:translateX(4px)}
+.task-card.done{opacity:0.5}
+.task-card .task-info{flex:1}
+.task-card .task-title{font-size:1.1rem;color:#ccd6f6;margin-bottom:4px}
+.task-card.done .task-title{text-decoration:line-through}
+.task-card .task-desc{font-size:0.85rem;color:#8892b0}
+.task-card .task-meta{display:flex;gap:8px;margin-top:6px}
+.priority-badge{padding:2px 8px;border-radius:4px;font-size:0.75rem;font-weight:600;text-transform:uppercase}
+.priority-badge.high{background:rgba(255,82,82,0.2);color:#ff5252}
+.priority-badge.medium{background:rgba(255,193,7,0.2);color:#ffc107}
+.priority-badge.low{background:rgba(100,255,218,0.2);color:#64ffda}
