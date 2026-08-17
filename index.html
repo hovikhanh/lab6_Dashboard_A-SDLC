@@ -34,6 +34,17 @@
                 <button type="submit" class="btn btn-primary">➕ Thêm Task</button>
             </form>
         </section>
+        <section class="filters">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Tìm kiếm task...">
+            </div>
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">Tất cả</button>
+                <button class="filter-btn" data-filter="todo">Đang làm</button>
+                <button class="filter-btn" data-filter="done">Hoàn thành</button>
+            </div>
+            <div class="task-stats" id="taskStats"></div>
+        </section>
         <section class="task-list" id="taskList"></section>
     </div>
     <script src="app.js"></script>
