@@ -26,3 +26,5 @@ cd lab6_Dashboard_A-SDLC
 - **Deployment Frequency**: Số lượng PR merged theo tuần
 
 *Lab 6 - Giáo trình A-SDLC (Chương 9.03)*
+
+Trigger Webhook Test
