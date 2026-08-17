@@ -1,0 +1,57 @@
+name: Metrics Collector
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  collect-metrics:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Collect PR Metrics
+        run: |
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          PR_MERGED_AT="${{ github.event.pull_request.merged_at }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          
+          # Get first commit in PR
+          FIRST_COMMIT=$(git log --reverse --format="%H" origin/${{ github.event.pull_request.base.ref }}..${{ github.event.pull_request.head.sha }} | head -1)
+          COMMIT_TIMESTAMP=$(git show -s --format=%aI $FIRST_COMMIT)
+          AUTHOR=$(git show -s --format=%an $FIRST_COMMIT)
+          COMMIT_HASH=$(echo $FIRST_COMMIT | cut -c1-7)
+          
+          echo "📊 Metrics collected:"
+          echo "  PR: #$PR_NUMBER - $PR_TITLE"
+          echo "  Author: $AUTHOR"
+          echo "  First Commit: $COMMIT_HASH at $COMMIT_TIMESTAMP"
+          echo "  Merged At: $PR_MERGED_AT"
+          
+          # Calculate Lead Time
+          COMMIT_EPOCH=$(date -d "$COMMIT_TIMESTAMP" +%s)
+          MERGE_EPOCH=$(date -d "$PR_MERGED_AT" +%s)
+          LEAD_TIME_HOURS=$(( (MERGE_EPOCH - COMMIT_EPOCH) / 3600 ))
+          echo "  Lead Time: ${LEAD_TIME_HOURS} hours"
+
+      - name: Send to Google Sheets
+        if: env.GOOGLE_SCRIPT_URL != ''
+        env:
+          GOOGLE_SCRIPT_URL: ${{ secrets.GOOGLE_APPS_SCRIPT_URL }}
+        run: |
+          curl -s -L "$GOOGLE_SCRIPT_URL" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"commit_hash\": \"$COMMIT_HASH\",
+              \"author\": \"$AUTHOR\",
+              \"commit_timestamp\": \"$COMMIT_TIMESTAMP\",
+              \"pr_number\": $PR_NUMBER,
+              \"pr_merged_timestamp\": \"$PR_MERGED_AT\",
+              \"pr_title\": \"$PR_TITLE\",
+              \"lead_time_hours\": $LEAD_TIME_HOURS
+            }"
+          echo "✅ Data sent to Google Sheets"
